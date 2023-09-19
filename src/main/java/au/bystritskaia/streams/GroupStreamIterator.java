@@ -5,23 +5,35 @@ import au.bystritskaia.groups.StudentGroup;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Итератор групп в потоке
+ */
 public class GroupStreamIterator implements Iterator<StudentGroup> {
-
-    private GroupStream stream;
+    /**
+     * Поток
+     */
+    private final GroupStream stream;
+    /**
+     * Текущий индекс группы
+     */
     private int currentIndex;
-
+    /**
+     * Текущая группа
+     */
     private StudentGroup current;
 
+    /**
+     * Конструктор итератора
+     * @param stream Поток
+     */
     public GroupStreamIterator(GroupStream stream) {
         this.stream = stream;
     }
 
     /**
-     * Returns {@code true} if the iteration has more elements.
-     * (In other words, returns {@code true} if {@link #next} would
-     * return an element rather than throwing an exception.)
+     * Проверяет есть ли следующая группа в потоке
      *
-     * @return {@code true} if the iteration has more elements
+     * @return Результат проверки
      */
     @Override
     public boolean hasNext() {
@@ -29,10 +41,10 @@ public class GroupStreamIterator implements Iterator<StudentGroup> {
     }
 
     /**
-     * Returns the next element in the iteration.
+     * Получает следующую группу в потоке
      *
-     * @return the next element in the iteration
-     * @throws NoSuchElementException if the iteration has no more elements
+     * @return Следующая группа в потоке
+     * @throws NoSuchElementException Если нет групп больше
      */
     @Override
     public StudentGroup next() throws NoSuchElementException {
@@ -44,26 +56,7 @@ public class GroupStreamIterator implements Iterator<StudentGroup> {
     }
 
     /**
-     * Removes from the underlying collection the last element returned
-     * by this iterator (optional operation).  This method can be called
-     * only once per call to {@link #next}.
-     * <p>
-     * The behavior of an iterator is unspecified if the underlying collection
-     * is modified while the iteration is in progress in any way other than by
-     * calling this method, unless an overriding class has specified a
-     * concurrent modification policy.
-     * <p>
-     * The behavior of an iterator is unspecified if this method is called
-     * after a call to the {@link #forEachRemaining forEachRemaining} method.
-     *
-     * @throws UnsupportedOperationException if the {@code remove}
-     *                                       operation is not supported by this iterator
-     * @throws IllegalStateException         if the {@code next} method has not
-     *                                       yet been called, or the {@code remove} method has already
-     *                                       been called after the last call to the {@code next}
-     *                                       method
-     * @implSpec The default implementation throws an instance of
-     * {@link UnsupportedOperationException} and performs no other action.
+     * Удалить группу из потока
      */
     @Override
     public void remove() {
