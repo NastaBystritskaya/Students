@@ -1,13 +1,20 @@
 package au.bystritskaia;
 
 import au.bystritskaia.groups.StudentGroup;
-import au.bystritskaia.groups.StudentGroupController;
-import au.bystritskaia.groups.StudentGroupService;
 import au.bystritskaia.streams.GroupStream;
 import au.bystritskaia.streams.GroupStreamController;
 import au.bystritskaia.streams.GroupStreamService;
-import au.bystritskaia.streams.StudentGroupIDComparator;
-import au.bystritskaia.students.Student;
+import au.bystritskaia.users.controllers.EmployeeController;
+import au.bystritskaia.users.controllers.IUserController;
+import au.bystritskaia.users.controllers.StudentController;
+import au.bystritskaia.users.controllers.TeacherController;
+import au.bystritskaia.users.models.Employee;
+import au.bystritskaia.users.models.Student;
+import au.bystritskaia.users.models.Teacher;
+import au.bystritskaia.users.views.EmployeeView;
+import au.bystritskaia.users.views.IUserView;
+import au.bystritskaia.users.views.StudentView;
+import au.bystritskaia.users.views.TeacherView;
 
 import java.util.List;
 
@@ -15,27 +22,65 @@ import java.util.List;
  * Hello world!
  */
 public class App {
-    private static List<Student> g1Students = List.of(
-            new Student(3L, "Иванова Аня", 23),
-            new Student(1L, "Петров Вася", 22)
-    );
 
-    private static List<Student> g2Students = List.of(
-            new Student(3L, "Иванова Тася", 25),
-            new Student(1L, "Петров Сережа", 24),
-            new Student(1L, "Степанова Василиса", 24)
-    );
+    private static IUserController<Student> studentsController = new StudentController();
+    private static IUserView<Student> studentView = new StudentView();
 
-    private static List<StudentGroup> groups = List.of(
-            new StudentGroup(1L, "Рукоделие", g1Students),
-            new StudentGroup(2L, "Технология", g2Students)
-    );
+    private static IUserController<Teacher> teacherController = new TeacherController();
+    private static IUserView<Teacher> teacherView = new TeacherView();
+
+    private static IUserController<Employee> employeeController = new EmployeeController();
+    private static IUserView<Employee> employeeView = new EmployeeView();
 
     public static void main(String[] args) {
-        GroupStream stream = new GroupStream(groups, 1);
-        GroupStreamController controller = new GroupStreamController(new GroupStreamService(stream));
-        controller.printGroups();
-        controller.printSortedGroups();
+
+        studentsController.create(1L, "Машина Маша", 23);
+        studentsController.create(2L, "Пашин Паша", 24);
+        studentsController.create(3L, "Мишин Миша", 20);
+
+        teacherController.create(1L, "Иванова Мария Михайловна", 49);
+        teacherController.create(2L, "Степашин Петр Сергеевич", 53);
+        teacherController.create(3L, "Соловьев Игорь Петрович", 38);
+
+        teacherController.create(1L, "Сидорова Антонина Юрьевна", 54);
+        teacherController.create(2L, "Викторов Григортий Валентинович", 20);
+        teacherController.create(3L, "Березовская Алефтина Афанасьевна", 64);
+
+        System.out.println("Список студентов ====================================");
+        studentView.view();
+        System.out.println("=====================================================");
+
+        System.out.println("Список студентов отсортированных=====================");
+        studentView.viewSorted();
+        System.out.println("=====================================================");
+
+        System.out.println("Средний возраст студентов ===========================");
+        studentView.viewAverage();
+        System.out.println("=====================================================");
+
+        System.out.println("Список преподавателей ================================");
+        teacherView.view();
+        System.out.println("=====================================================");
+
+        System.out.println("Список преподавателей отсортированных ===============");
+        teacherView.viewSorted();
+        System.out.println("=====================================================");
+
+        System.out.println("Средний возраст преподавателей ======================");
+        teacherView.viewAverage();
+        System.out.println("=====================================================");
+
+        System.out.println("Список сотрудников ==================================");
+        teacherView.view();
+        System.out.println("=====================================================");
+
+        System.out.println("Список сотрудников отсортированных ==================");
+        teacherView.viewSorted();
+        System.out.println("=====================================================");
+
+        System.out.println("Средний возраст сотрудников =========================");
+        teacherView.viewAverage();
+        System.out.println("=====================================================");
 
 
     }

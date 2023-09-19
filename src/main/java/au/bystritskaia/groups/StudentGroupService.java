@@ -1,7 +1,7 @@
 package au.bystritskaia.groups;
 
-import au.bystritskaia.students.Student;
-import au.bystritskaia.students.StudentComparator;
+import au.bystritskaia.users.models.Student;
+import au.bystritskaia.users.models.UserComparator;
 
 import java.util.Iterator;
 import java.util.List;
@@ -24,6 +24,6 @@ public class StudentGroupService {
     }
 
     public List<Student> sortStudent() {
-        return this.group.students.stream().sorted(new StudentComparator()).collect(Collectors.toList());
+        return this.group.students.stream().sorted(new UserComparator<>()).collect(Collectors.toList());
     }
 }

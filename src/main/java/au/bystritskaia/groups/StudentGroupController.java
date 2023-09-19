@@ -1,6 +1,6 @@
 package au.bystritskaia.groups;
 
-import au.bystritskaia.students.Student;
+import au.bystritskaia.users.models.Student;
 
 import java.util.List;
 
