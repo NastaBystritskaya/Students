@@ -71,15 +71,15 @@ public class App {
         System.out.println("=====================================================");
 
         System.out.println("Список сотрудников ==================================");
-        teacherView.view();
+        employeeView.view();
         System.out.println("=====================================================");
 
         System.out.println("Список сотрудников отсортированных ==================");
-        teacherView.viewSorted();
+        employeeView.viewSorted();
         System.out.println("=====================================================");
 
         System.out.println("Средний возраст сотрудников =========================");
-        teacherView.viewAverage();
+        employeeView.viewAverage();
         System.out.println("=====================================================");
 
 
