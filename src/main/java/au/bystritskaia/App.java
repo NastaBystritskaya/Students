@@ -42,9 +42,9 @@ public class App {
         teacherController.create(2L, "Степашин Петр Сергеевич", 53);
         teacherController.create(3L, "Соловьев Игорь Петрович", 38);
 
-        teacherController.create(1L, "Сидорова Антонина Юрьевна", 54);
-        teacherController.create(2L, "Викторов Григортий Валентинович", 20);
-        teacherController.create(3L, "Березовская Алефтина Афанасьевна", 64);
+        employeeController.create(1L, "Сидорова Антонина Юрьевна", 54);
+        employeeController.create(2L, "Викторов Григортий Валентинович", 20);
+        employeeController.create(3L, "Березовская Алефтина Афанасьевна", 64);
 
         System.out.println("Список студентов ====================================");
         studentView.view();
